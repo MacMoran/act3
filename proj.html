@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sort Data by Sex</title>
+</head>
+<body>
+<h1>Sort Data by Sex</h1>
+<button onclick="sortDataBySex()">Sort Data</button>
+<div id="output"></div>
+
+<script>
+// Merge Sort Algorithm for sorting by sex
+function mergeSortBySex(data) {
+if (data.length <= 1) {
+return data;
+}
+
+const mid = Math.floor(data.length / 2);
+const left = data.slice(0, mid);
+const right = data.slice(mid);
+
+return merge(mergeSortBySex(left), mergeSortBySex(right));
+}
+
+function merge(left, right) {
+let result = [];
+let leftIndex = 0;
+let rightIndex = 0;
+
+while (leftIndex < left.length && rightIndex < right.length) {
+if (left[leftIndex].sex < right[rightIndex].sex) {
+result.push(left[leftIndex]);
+leftIndex++;
+} else {
+result.push(right[rightIndex]);
+rightIndex++;
+}
+}
+
+return result.concat(left.slice(leftIndex)).concat(right.slice(rightIndex));
+}
+
+// Main function to sort and display data
+function sortDataBySex() {
+const dataset = [
+{ name: "aly", sex: "Female" },
+{ name: "Bob", sex: "Male" },
+{ name: "Charlie", sex: "Male" },
+{ name: "Dave", sex: "Male" },
+{ name: "Eves", sex: "Female" },
+{ name: "Alice", sex: "Female" },
+{ name: "Boou", sex: "Male" },
+{ name: "Charles", sex: "Male" },
+{ name: "juan", sex: "Male" },
+{ name: "lyee", sex: "Female" },
+{ name: "kim", sex: "Female" },
+{ name: "Bae", sex: "Male" },
+{ name: "mark", sex: "Male" },
+{ name: "Danniel", sex: "Male" },
+{ name: "Eva", sex: "Female" },
+{ name: "ivy", sex: "Female" },
+{ name: "james", sex: "Male" },
+{ name: "raven", sex: "Male" },
+{ name: "Dane", sex: "Male" },
+{ name: "jani", sex: "Female" },
+{ name: "lianne", sex: "Female" },
+{ name: "eva", sex: "Male" },
+{ name: "juls", sex: "Male" },
+{ name: "carlo", sex: "Male" },
+{ name: "gers", sex: "Female" },
+{ name: "maze", sex: "Female" },
+{ name: "ken", sex: "Male" },
+{ name: "neth", sex: "Male" },
+{ name: "mak", sex: "Male" },
+{ name: "mac", sex: "Female" },
+{ name: "dan", sex: "Female" },
+{ name: "ej", sex: "Male" },
+{ name: "marco", sex: "Male" },
+{ name: "adan", sex: "Male" },
+{ name: "Eva", sex: "Female" },
+{ name: "get", sex: "Female" },
+{ name: "tris", sex: "Male" },
+{ name: "tristan", sex: "Male" },
+{ name: "marksz", sex: "Male" },
+{ name: "denmark", sex: "Female" },
+{ name: "aaron", sex: "Female" },
+{ name: "jud", sex: "Male" },
+{ name: "pado", sex: "Male" },
+{ name: "dales", sex: "Male" },
+{ name: "carlos", sex: "Female" },
+{ name: "joren", sex: "Female" },
+{ name: "jkee", sex: "Male" },
+{ name: "julius", sex: "Male" },
+{ name: "haty", sex: "Male" },
+{ name: "miguel", sex: "Female" },
+
+// Add more data here...
+];
+
+const sortedData = mergeSortBySex(dataset);
+
+const outputDiv = document.getElementById("output");
+outputDiv.innerHTML = "<h2>Sorted Data by Sex:</h2>";
+
+sortedData.forEach(function (person) {
+outputDiv.innerHTML += `${person.name}: ${person.sex}<br>`;
+});
+}
+</script>
+</body>
+</html>
